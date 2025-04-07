@@ -1,0 +1,77 @@
+[
+  {
+    "avgTimeSeconds": "45",
+    "correctAnswer": "C",
+    "difficulty": "medium",
+    "explanation": "Sumatriptan is a serotonin (5-HT) receptor agonist, specifically targeting the 5-HT1B and 5-HT1D subtypes, which causes vasoconstriction of cranial blood vessels.",
+    "options": [
+      "GABA receptors",
+      "Dopamine D2 receptors",
+      "5-HT1B/1D receptors",
+      "Muscarinic acetylcholine receptors",
+      "Beta-adrenergic receptors"
+    ],
+    "question": "A 48-year-old woman with a history of migraine headaches is prescribed sumatriptan. Which of the following receptors is the primary target of this medication?",
+    "subject": "Pharmacology"
+  },
+  {
+    "avgTimeSeconds": "40",
+    "correctAnswer": "B",
+    "difficulty": "medium",
+    "explanation": "Lisinopril is an ACE inhibitor that blocks the conversion of angiotensin I to angiotensin II, reducing vasoconstriction and blood pressure.",
+    "options": [
+      "Carbonic anhydrase",
+      "Angiotensin-converting enzyme (ACE)",
+      "Monoamine oxidase (MAO)",
+      "Cyclooxygenase (COX)",
+      "HMG-CoA reductase"
+    ],
+    "question": "A 55-year-old man with hypertension is prescribed lisinopril. Which enzyme does this medication primarily inhibit to lower blood pressure?",
+    "subject": "Pharmacology"
+  },
+  {
+    "avgTimeSeconds": "50",
+    "correctAnswer": "B",
+    "difficulty": "medium",
+    "explanation": "Doxycycline, a tetracycline antibiotic, commonly causes photosensitivity, leading to increased risk of sunburn with sun exposure.",
+    "options": [
+      "Ototoxicity",
+      "Photosensitivity",
+      "Tendon rupture",
+      "Hepatotoxicity",
+      "Peripheral neuropathy"
+    ],
+    "question": "A 30-year-old woman is prescribed doxycycline for a bacterial infection. Which of the following is a common side effect she should be advised about?",
+    "subject": "Pharmacology"
+  },
+  {
+    "avgTimeSeconds": "35",
+    "correctAnswer": "C",
+    "difficulty": "easy",
+    "explanation": "Fluoxetine is an SSRI that increases serotonin levels in the brain by inhibiting its reuptake, commonly used to treat depression.",
+    "options": [
+      "Tricyclic antidepressants (TCAs)",
+      "Monoamine oxidase inhibitors (MAOIs)",
+      "Selective serotonin reuptake inhibitors (SSRIs)",
+      "Serotonin-norepinephrine reuptake inhibitors (SNRIs)",
+      "Atypical antipsychotics"
+    ],
+    "question": "A 42-year-old patient with major depressive disorder is prescribed fluoxetine. This medication belongs to which pharmacological class?",
+    "subject": "Pharmacology"
+  },
+  {
+    "avgTimeSeconds": "45",
+    "correctAnswer": "C",
+    "difficulty": "medium",
+    "explanation": "Amiodarone is a Class III antiarrhythmic that primarily prolongs the cardiac action potential by blocking potassium channels, stabilizing heart rhythm.",
+    "options": [
+      "Sodium channels",
+      "Calcium channels",
+      "Potassium channels",
+      "Chloride channels",
+      "Magnesium channels"
+    ],
+    "question": "A 60-year-old man with atrial fibrillation is prescribed amiodarone. This medication primarily affects which ion channel to stabilize cardiac rhythm?",
+    "subject": "Pharmacology"
+  }
+]

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendang Table - Monash Exam Question Bank</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script type="module" src="script.js" defer></script>
+    </head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-3 md:mb-0">
+                    <div class="text-3xl logo-text flex items-center">
+                        <i class="fas fa-stethoscope mr-2"></i>
+                        <span>Rendang Table</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center w-full md:w-auto">
+                    <nav class="flex items-center flex-wrap space-x-4 md:space-x-6 flex-grow justify-center md:justify-start" role="tablist" aria-label="Main Navigation">
+                        <button id="homeTab" role="tab" aria-selected="true" aria-controls="homeContent" class="tab-button px-3 py-2 text-gray-700 hover:text-teal-600 font-medium active">
+                            <i class="fas fa-home mr-1"></i> Home
+                        </button>
+                        <button id="practiceTab" role="tab" aria-selected="false" aria-controls="practiceContent" class="tab-button px-3 py-2 text-gray-700 hover:text-teal-600 font-medium">
+                            <i class="fas fa-edit mr-1"></i> Practice
+                        </button>
+                        <button id="statsTab" role="tab" aria-selected="false" aria-controls="statsContent" class="tab-button px-3 py-2 text-gray-700 hover:text-teal-600 font-medium">
+                            <i class="fas fa-chart-pie mr-1"></i> Stats
+                        </button>
+                        <button id="revisionsTab" role="tab" aria-selected="false" aria-controls="revisionsContent" class="tab-button px-3 py-2 text-gray-700 hover:text-teal-600 font-medium">
+                            <i class="fas fa-sync-alt mr-1"></i> Revisions
+                        </button>
+                        <button id="manageTab" role="tab" aria-selected="false" aria-controls="manageContent" class="tab-button px-3 py-2 text-gray-700 hover:text-teal-600 font-medium">
+                            <i class="fas fa-database mr-1"></i> Manage
+                        </button>
+                    </nav>
+                    <div id="userSection" class="ml-4 md:ml-6 flex-shrink-0">
+                        <button id="loginBtn" class="px-3 py-2 text-gray-700 hover:text-teal-600 font-medium">
+                            <i class="fas fa-sign-in-alt mr-1"></i> Login
+                        </button>
+                        
+                        <div id="userInfo" class="hidden flex items-center space-x-3">
+                            <div class="relative">
+                                <button id="userMenuBtn" class="flex items-center space-x-1 text-teal-700 font-medium hover:text-teal-800" aria-haspopup="true" aria-expanded="false" aria-controls="userDropdown">
+                                    <i class="fas fa-user-md text-xl"></i>
+                                    <span id="username">Dr. Smith</span>
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </button>
+                                <div id="userDropdown" role="menu" aria-labelledby="userMenuBtn" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                                    <a href="#" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-user mr-2"></i> Profile
+                                    </a>
+                                    <a href="#" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-cog mr-2"></i> Settings
+                                    </a>
+                                    <div class="border-t border-gray-100"></div>
+                                    <button id="logoutBtn" role="menuitem" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+    <main class="container mx-auto px-4 py-8">
+        <div class="tab-content">
+            <div id="homeContent" role="tabpanel" aria-labelledby="homeTab" class="active">
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Study Dashboard</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="card bg-white p-6 rounded-lg shadow dashboard-card">
+                             <div class="dashboard-card-body">
+                                 <div class="flex justify-between items-center mb-4">
+                                     <h3 class="text-lg font-semibold text-gray-800">Overall Progress</h3>
+                                     <i class="fas fa-chart-line text-teal-500 text-xl"></i>
+                                 </div>
+                                 <div class="text-center mb-6">
+                                     <div class="text-3xl font-bold text-teal-600 mb-1" id="overallPercentage">75%</div>
+                                     <div class="text-sm text-gray-500">Correct Answers</div>
+                                 </div>
+                                 <div class="mb-2 flex justify-between text-sm">
+                                     <span>Total Attempted</span>
+                                     <span class="font-medium" id="totalAttempted">240 questions</span>
+                                 </div>
+                                 <div class="progress-container mb-6">
+                                     <div class="progress-bar" style="width: 75%"></div>
+                                 </div>
+                                 <div class="grid grid-cols-2 gap-2 text-sm">
+                                     <div class="text-green-600"><i class="fas fa-check-circle mr-1"></i> Correct: <span id="totalCorrect">180</span></div>
+                                     <div class="text-red-600"><i class="fas fa-times-circle mr-1"></i> Incorrect: <span id="totalIncorrect">60</span></div>
+                                 </div>
+                             </div>
+                         </div>
+                        <div class="card bg-white p-6 rounded-lg shadow dashboard-card">
+                             <div class="dashboard-card-body">
+                                 <div class="flex justify-between items-center mb-4">
+                                     <h3 class="text-lg font-semibold text-gray-800">Subject Performance</h3>
+                                     <i class="fas fa-graduation-cap text-teal-500 text-xl"></i>
+                                 </div>
+                                 <div class="space-y-4">
+                                     <div>
+                                         <div class="flex justify-between mb-1 text-sm"><span class="font-medium">Pharmacology</span><span class="text-green-600">80%</span></div>
+                                         <div class="progress-container"><div class="progress-bar" style="width: 80%"></div></div>
+                                     </div>
+                                     <div>
+                                         <div class="flex justify-between mb-1 text-sm"><span class="font-medium">Pathology</span><span class="text-green-600">72%</span></div>
+                                         <div class="progress-container"><div class="progress-bar" style="width: 72%"></div></div>
+                                     </div>
+                                     <div>
+                                         <div class="flex justify-between mb-1 text-sm"><span class="font-medium">Anatomy</span><span class="text-yellow-600">65%</span></div>
+                                         <div class="progress-container"><div class="progress-bar bg-yellow-500" style="width: 65%"></div></div>
+                                     </div>
+                                     <div>
+                                         <div class="flex justify-between mb-1 text-sm"><span class="font-medium">Physiology</span><span class="text-green-600">87%</span></div>
+                                         <div class="progress-container"><div class="progress-bar" style="width: 87%"></div></div>
+                                     </div>
+                                 </div>
+                                 <div class="mt-4 text-center">
+                                     <button id="viewAllSubjectsBtn" class="text-teal-600 hover:text-teal-800 text-sm font-medium">View All Subjects <i class="fas fa-chevron-right ml-1"></i></button>
+                                 </div>
+                             </div>
+                         </div>
+                        <div class="card bg-white p-6 rounded-lg shadow dashboard-card">
+                            <div class="dashboard-card-body">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">Revision Schedule</h3>
+                                    <i class="fas fa-calendar-alt text-teal-500 text-xl"></i>
+                                </div>
+                                <div class="text-center p-3 mb-4 bg-teal-50 rounded-lg">
+                                    <div class="text-sm text-teal-700 mb-1">Questions Due Today</div>
+                                    <div class="text-3xl font-bold text-teal-600" id="questionsToday">15</div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-200"><span class="text-sm">Pharmacology</span><span class="text-sm bg-teal-100 text-teal-800 px-2 py-1 rounded">4 questions</span></div>
+                                     <div class="flex justify-between items-center py-2 border-b border-gray-200"><span class="text-sm">Pathology</span><span class="text-sm bg-teal-100 text-teal-800 px-2 py-1 rounded">3 questions</span></div>
+                                     <div class="flex justify-between items-center py-2 border-b border-gray-200"><span class="text-sm">Anatomy</span><span class="text-sm bg-teal-100 text-teal-800 px-2 py-1 rounded">5 questions</span></div>
+                                     <div class="flex justify-between items-center py-2"><span class="text-sm">Radiology</span><span class="text-sm bg-teal-100 text-teal-800 px-2 py-1 rounded">3 questions</span></div>
+                                 </div>
+                                <button id="startRevisionBtn" class="mt-6 w-full bg-teal-600 hover:bg-teal-700 text-white py-2 rounded-lg transition">Start Revision Session</button>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+                
+                <div class="mb-12">
+                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Activity</h2>
+                     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                         <div class="p-6">
+                             <div class="flex items-center mb-6">
+                                 <div class="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4"><i class="fas fa-clock text-teal-600 text-xl"></i></div>
+                                 <div>
+                                     <h3 class="text-lg font-semibold text-gray-800">Your Last 7 Days</h3>
+                                     <p class="text-sm text-gray-600">Track your recent progress</p>
+                                 </div>
+                             </div>
+                             <div class="chart-container">
+                                 <canvas id="weeklyActivityChart"></canvas>
+                             </div>
+                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-6">
+                                 <div class="bg-teal-50 p-3 rounded-lg"><div class="text-teal-600 font-bold text-2xl">42</div><div class="text-gray-600 text-sm">Questions Answered</div></div>
+                                  <div class="bg-green-50 p-3 rounded-lg"><div class="text-green-600 font-bold text-2xl">32</div><div class="text-gray-600 text-sm">Correct Answers</div></div>
+                                  <div class="bg-yellow-50 p-3 rounded-lg"><div class="text-yellow-600 font-bold text-2xl">3.5</div><div class="text-gray-600 text-sm">Avg. Session (hours)</div></div>
+                                  <div class="bg-indigo-50 p-3 rounded-lg"><div class="text-indigo-600 font-bold text-2xl">5</div><div class="text-gray-600 text-sm">Study Days</div></div>
+                              </div>
+                         </div>
+                     </div>
+                 </div>
+                
+                <div class="mb-12">
+                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Quick Actions</h2>
+                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                         <button id="startPracticeBtn" class="card bg-gradient-to-r from-teal-600 to-teal-700 p-6 text-white text-left"><div class="flex items-center justify-between mb-2"><h3 class="text-lg font-semibold">Practice</h3><i class="fas fa-edit text-2xl"></i></div><p class="text-sm text-teal-100">Answer new questions from any subject</p></button>
+                         <button id="startRevisionBtnQuick" class="card bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white text-left"><div class="flex items-center justify-between mb-2"><h3 class="text-lg font-semibold">Revise</h3><i class="fas fa-sync-alt text-2xl"></i></div><p class="text-sm text-blue-100">Review questions due for revision</p></button>
+                         <button id="weakestSubjectBtn" class="card bg-gradient-to-r from-purple-600 to-purple-700 p-6 text-white text-left"><div class="flex items-center justify-between mb-2"><h3 class="text-lg font-semibold">Weakest Subject</h3><i class="fas fa-exclamation-circle text-2xl"></i></div><p class="text-sm text-purple-100">Focus on your weakest subject: Anatomy</p></button>
+                         <button id="randomQuizBtn" class="card bg-gradient-to-r from-pink-600 to-pink-700 p-6 text-white text-left"><div class="flex items-center justify-between mb-2"><h3 class="text-lg font-semibold">Random Quiz</h3><i class="fas fa-random text-2xl"></i></div><p class="text-sm text-pink-100">Test yourself with 10 random questions</p></button>
+                     </div>
+                 </div>
+            </div>
+            
+            <div id="practiceContent" role="tabpanel" aria-labelledby="practiceTab">
+                 <div class="mb-6 flex justify-between items-center">
+                     <h2 class="text-2xl font-bold text-gray-800">Practice Questions</h2>
+                     <div class="flex items-center space-x-4">
+                         <div class="relative">
+                             <button id="subjectFilterBtn" class="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200 text-gray-700 hover:bg-gray-50" aria-haspopup="true" aria-expanded="false" aria-controls="subjectDropdown">
+                                 <span>Subject: <span id="currentSubject">All</span></span>
+                                 <i class="fas fa-chevron-down text-xs"></i>
+                             </button>
+                             <div id="subjectDropdown" role="menu" aria-labelledby="subjectFilterBtn" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 z-10">
+                                 <div class="px-3 py-2 text-xs text-gray-600 font-semibold">Filter by Subject</div>
+                                 <div class="subject-filter-list px-3 py-2 space-y-2">
+                                    <div role="menuitemradio" aria-checked="true" class="subject-badge active px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="all">All Subjects</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="pharmacology">Pharmacology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="pathology">Pathology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="anatomy">Anatomy</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="physiology">Physiology</div>
+                                    <!-- Preclinical -->
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="biochemistry">Biochemistry</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="histology">Histology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="microbiology">Microbiology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="immunology">Immunology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="genetics">Genetics</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="embryology">Embryology</div>
+                                    <!-- Clinical -->
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="internal medicine">Internal Medicine</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="surgery">Surgery</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="pediatrics">Pediatrics</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="ob/gyn">OB/GYN</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="psychiatry">Psychiatry</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="neurology">Neurology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="cardiology">Cardiology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="emergency medicine">Emergency Medicine</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="dermatology">Dermatology</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="radiology">Radiology</div>
+                                    <div role="menuitemradio" aria-checked="true" class="subject-badge active px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="all">All Subjects</div>
+                                    <div role="menuitemradio" aria-checked="false" class="subject-badge px-2 py-1 rounded-full bg-gray-200 text-gray-800 text-xs inline-block mr-2" data-subject="pharmacology">Pharmacology</div>
+                                </div>
+                             </div>
+                         </div>
+                         <div class="relative">
+                             <button id="difficultyFilterBtn" class="flex items-center space-x-2 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200 text-gray-700 hover:bg-gray-50" aria-haspopup="true" aria-expanded="false" aria-controls="difficultyDropdown">
+                                 <span>Difficulty: <span id="currentDifficulty">All</span></span>
+                                 <i class="fas fa-chevron-down text-xs"></i>
+                             </button>
+                             <div id="difficultyDropdown" role="menu" aria-labelledby="difficultyFilterBtn" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                                 <div class="px-3 py-2 text-xs text-gray-600 font-semibold">Filter by Difficulty</div>
+                                 <button role="menuitemradio" aria-checked="true" class="difficulty-filter block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active" data-difficulty="all">All Difficulties</button>
+                                  </div>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="card bg-white p-6 rounded-lg shadow-lg mb-8">
+                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-4 border-b border-gray-200">
+                          <div>
+                              <span id="questionSubject" class="bg-teal-100 text-teal-800 text-xs font-medium px-2.5 py-1 rounded">Pharmacology</span>
+                              <span class="ml-2 text-gray-500 text-sm">Question #<span id="questionNumber">1</span> of <span id="totalQuestions">25</span></span>
+                          </div>
+                          <div class="mt-2 md:mt-0 flex items-center">
+                              <div class="text-sm text-gray-600 mr-4"><i class="fas fa-clock mr-1"></i> Average time: <span id="avgTime">45 seconds</span></div>
+                              <div class="text-sm tooltip"><i class="fas fa-info-circle text-teal-500"></i><span class="tooltip-text">This is the average time users spend on this type of question.</span></div>
+                          </div>
+                      </div>
+                     <div class="mb-6">
+                         <p class="text-lg text-gray-800 leading-relaxed" id="questionText">A 48-year-old woman with a history of migraine headaches is prescribed sumatriptan. Which of the following receptors is the primary target of this medication?</p>
+                     </div>
+                     <div id="answerOptions" class="space-y-3 mb-6">
+                          <div class="answer-option p-3 rounded-lg" data-option="A"><div class="flex items-start"><div class="flex-shrink-0 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-3 mt-0.5"><span class="font-medium text-gray-700">A</span></div><div><p>GABA receptors</p></div></div></div>
+                          <div class="answer-option p-3 rounded-lg" data-option="B"><div class="flex items-start"><div class="flex-shrink-0 w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-3 mt-0.5"><span class="font-medium text-gray-700">B</span></div><div><p>Dopamine D2 receptors</p></div></div></div>
+                          </div>
+                     <div id="feedbackArea" class="hidden mb-6 p-4 rounded-lg">
+                          <p id="feedbackText" class="text-sm"></p>
+                      </div>
+                     <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                         <h4 class="text-sm font-semibold text-gray-700 mb-3">Rate Question Difficulty</h4>
+                         <div class="flex space-x-3">
+                             <button class="difficulty-btn bg-green-100 hover:bg-green-200 text-green-800 px-3 py-1 rounded-full text-sm" data-difficulty="easy"><i class="fas fa-smile mr-1"></i> Easy</button>
+                             <button class="difficulty-btn bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm active" data-difficulty="medium"><i class="fas fa-meh mr-1"></i> Medium</button>
+                             <button class="difficulty-btn bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded-full text-sm" data-difficulty="hard"><i class="fas fa-frown mr-1"></i> Hard</button>
+                         </div>
+                         <div class="mt-2 text-xs text-gray-500"><i class="fas fa-info-circle mr-1"></i> Easy questions appear less frequently, hard questions more often in your revision schedule.</div>
+                     </div>
+                     <div class="flex justify-between items-center">
+                          <button id="prevButton" class="btn-secondary px-4 py-2 rounded-lg text-sm font-medium flex items-center"><i class="fas fa-arrow-left mr-2"></i> Previous</button>
+                          <div class="flex space-x-3">
+                              <button id="flagButton" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-2 rounded-lg text-sm flex items-center"><i class="fas fa-flag mr-2"></i> Flag</button>
+                              <button id="nextButton" class="btn-primary px-4 py-2 rounded-lg text-sm font-medium flex items-center">Next <i class="fas fa-arrow-right ml-2"></i></button>
+                          </div>
+                      </div>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                      <div class="flex items-center justify-between mb-4">
+                          <h3 class="text-lg font-semibold text-gray-800">Current Session Stats</h3>
+                          <button id="endSessionBtn" class="text-sm bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded transition">End Session</button>
+                      </div>
+                      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                           <div class="p-3"><div class="text-gray-700 font-bold text-2xl" id="sessionQuestions">5</div><div class="text-gray-500 text-sm">Questions</div></div>
+                           <div class="p-3"><div class="text-green-600 font-bold text-2xl" id="sessionCorrect">3</div><div class="text-gray-500 text-sm">Correct</div></div>
+                           <div class="p-3"><div class="text-red-600 font-bold text-2xl" id="sessionIncorrect">2</div><div class="text-gray-500 text-sm">Incorrect</div></div>
+                           <div class="p-3"><div class="text-teal-600 font-bold text-2xl" id="sessionAccuracy">60%</div><div class="text-gray-500 text-sm">Accuracy</div></div>
+                       </div>
+                  </div>
+            </div>
+            
+            <div id="statsContent" role="tabpanel" aria-labelledby="statsTab">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Performance Statistics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="card bg-white p-6 rounded-lg shadow"><div class="flex items-center justify-between mb-2"><h3 class="text-lg font-semibold text-gray-800">Total Questions</h3><i class="fas fa-question-circle text-teal-500 text-xl"></i></div><div class="text-3xl font-bold text-gray-700" id="statsTotalQuestions">420</div><p class="text-sm text-gray-500 mt-1">Questions attempted</p></div>
+                     </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg mb-8 radar-chart-container">
+                    <div class="flex items-center justify-between mb-6"><h3 class="text-lg font-semibold text-gray-800">Performance by Subject</h3><div class="flex space-x-2"></div></div>
+                    <div class="chart-container"><canvas id="subjectsChart"></canvas></div>
+                    <div class="mt-6"><h4 class="text-sm font-semibold text-gray-700 mb-3">Detailed Subject Breakdown</h4><div class="overflow-x-auto"><table class="min-w-full divide-y divide-gray-200"><thead></thead><tbody class="bg-white divide-y divide-gray-200" id="subjectStatsTable"></tbody></table></div></div>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+                      <h3 class="text-lg font-semibold text-gray-800 mb-6">Progress Over Time</h3>
+                      <div class="chart-container"><canvas id="progressChart"></canvas></div>
+                  </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg"></div>
+                 </div>
+            </div>
+            
+            <div id="revisionsContent" role="tabpanel" aria-labelledby="revisionsTab">
+                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Revision Questions</h2>
+                 <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                     <i class="fas fa-clock text-4xl text-teal-500 mb-4"></i>
+                     <h3 class="text-lg font-semibold text-gray-800 mb-2">Revision Feature Coming Soon</h3>
+                     <p class="text-gray-600">This section will show questions scheduled for revision based on spaced repetition.</p>
+                 </div>
+            </div>
+            
+            <div id="manageContent" role="tabpanel" aria-labelledby="manageTab">
+                 <h2 class="text-2xl font-bold text-gray-800 mb-6">Manage Question Bank</h2>
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Add New Question</h3>
+                    <form id="addQuestionForm" class="space-y-4">
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <input type="text" id="subject" name="subject" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                        </div>
+                        <div>
+                            <label for="question" class="block text-sm font-medium text-gray-700">Question</label>
+                            <textarea id="question" name="question" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required></textarea>
+                        </div>
+                        <div>
+                            <label for="options" class="block text-sm font-medium text-gray-700">Options (comma-separated)</label>
+                            <input type="text" id="options" name="options" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Option A, Option B, Option C, Option D" required>
+                        </div>
+                        <div>
+                            <label for="correctAnswer" class="block text-sm font-medium text-gray-700">Correct Answer (e.g., A, B, C, D)</label>
+                            <input type="text" id="correctAnswer" name="correctAnswer" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                        </div>
+                        <div>
+                            <label for="difficulty" class="block text-sm font-medium text-gray-700">Difficulty</label>
+                            <select id="difficulty" name="difficulty" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                                <option value="easy">Easy</option>
+                                <option value="medium">Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="avgTimeSeconds" class="block text-sm font-medium text-gray-700">Average Time (seconds)</label>
+                            <input type="number" id="avgTimeSeconds" name="avgTimeSeconds" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required>
+                        </div>
+                        <div>
+                            <label for="explanation" class="block text-sm font-medium text-gray-700">Explanation</label>
+                            <textarea id="explanation" name="explanation" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary px-6 py-2 rounded-lg">Add Question</button>
+                    </form>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Import Questions</h3>
+                     <div class="file-upload">
+                         <input type="file" id="fileInput" class="hidden" accept=".csv,.json">
+                         <label for="fileInput" class="cursor-pointer">
+                             <i class="fas fa-cloud-upload-alt text-4xl text-teal-500 mb-3"></i>
+                             <p class="text-gray-700 font-medium">Drag & drop files here or click to browse</p>
+                             <p class="text-xs text-gray-500">Supports CSV, JSON formats</p>
+                         </label>
+                     </div>
+                     <button id="importBtn" class="btn-secondary mt-4 px-6 py-2 rounded-lg">Import</button>
+                 </div>
+            </div>
+        </div>
+        
+        <div id="loginModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+            <div class="modal-container">
+                <button id="closeLoginModal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700" aria-label="Close Login Modal">×</button>
+                <h2 id="loginModalTitle" class="text-xl font-semibold mb-4">Sign in to Rendang Table</h2>
+                <button id="googleLoginBtn" class="w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg transition flex items-center justify-center">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" class="w-5 h-5 mr-2"> Sign in with Google
+                </button>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer class="bg-white mt-12 py-6 border-t border-gray-200">
+        <div class="container mx-auto px-4 text-center text-gray-600 text-sm">
+            &copy; 2025 Rendang Table. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
